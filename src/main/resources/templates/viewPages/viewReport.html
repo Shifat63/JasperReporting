@@ -1,0 +1,53 @@
+<!-- Author: Shifat63) -->
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{/layout :: layout (~{::body},'home')}">
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table id="employeesTable" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Salary</th>
+                                    <th>Designation</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Salary</th>
+                                    <th>Designation</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block layout:fragment="script">
+    <script>
+        $(document).ready( function () {
+            var table = $('#employeesTable').DataTable({
+                "sAjaxSource": "/employee",
+                "sAjaxDataProp": "",
+                "order": [[ 0, "asc" ]],
+                "aoColumns": [
+                    { "mData": "empId"},
+                    { "mData": "name"},
+                    { "mData": "salary" },
+                    { "mData": "designation" }
+                ]
+            })
+        });
+    </script>
+</th:block>
+</body>
+</html>
